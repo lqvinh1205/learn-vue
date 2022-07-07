@@ -1,12 +1,7 @@
 <template>
-  <!-- <div>
-    <label for="email"> FulllName: </label>
-    <input type="text" name="email" />
-    <span>The field is required! </span>
-  </div> -->
   <label :for="name" class="input">
     <span class="label-name">{{ name }}</span>
-    <input :type="type" :name="name" />
+    <input :type="type" :name="name" @blur="blurFn" @input="handleInput" />
     <span class="error">{{ msg }} </span>
   </label>
 </template>
@@ -24,6 +19,24 @@ export default {
     msg: {
       type: String,
       default: "The field is required!",
+    },
+    blur: {
+      type: Function,
+    },
+    input: null,
+  },
+
+  data() {
+    return {
+      content: this.value,
+    };
+  },
+  methods: {
+    blurFn() {
+      this.$emit("blur", { type: this.type, value: this.value });
+    },
+    handleInput() {
+      this.$emit("input", this.content);
     },
   },
 };

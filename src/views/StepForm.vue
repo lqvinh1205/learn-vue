@@ -2,7 +2,6 @@
   <div class="step-form">
     <div class="step-form-main">
       <ProgressComponentVue :step="actived" />
-      <!-- <div class="step"> -->
       <BoxShadowVue>
         <button class="btn-step">
           <span class="numb-step">1</span>
@@ -17,10 +16,21 @@
           <span>Finishing Up</span>
         </button>
       </BoxShadowVue>
-      <!-- </div> -->
       <BoxShadowVue v-if="actived === 1" class="fade-in">
-        <InputField name="Full Name" />
-        <InputField name="Your Email" type="email" />
+        <InputField
+          name="Full Name"
+          @blur="validate"
+          @input="multilForm.form1.fullName"
+          fullName=""
+        />
+        <input type="text" v-model="multilForm.form1.fullName">
+        <!-- {{ multilForm.form1.fullName }} -->
+        <InputField
+          name="Your Email"
+          type="email"
+          @blur="validate"
+          :v-model="multilForm.form1.email"
+        />
       </BoxShadowVue>
       <BoxShadowVue v-if="actived === 2" class="fade-in">
         <InputField name="Your Company Name" />
@@ -31,7 +41,7 @@
         <ButtonCustom title="Next" @click="next" />
       </div>
     </div>
-    {{name}}
+    {{ multilForm.form1.fullName }}
   </div>
 </template>
 <script>
@@ -50,16 +60,23 @@ export default {
   data() {
     return {
       actived: 1,
+      multilForm: {
+        form1: {
+          fullName: "le vinh",
+          email: "",
+        },
+        form2: {
+          company: "",
+          numberEmployee: null,
+        },
+      },
     };
   },
-  created() {
-    console.log(this.$store);
-  },
-    computed: {
-      name() {
-        return this.$store.state.name;
-      },
+  computed: {
+    name() {
+      return this.$store.state.name;
     },
+  },
   methods: {
     previous() {
       if (this.actived === 1) return;
@@ -67,6 +84,11 @@ export default {
     },
     next() {
       return (this.actived = this.actived + 1);
+    },
+    validate(e) {
+      if (e.type === "text") {
+        console.log(e);
+      }
     },
   },
 };
