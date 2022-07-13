@@ -1,8 +1,19 @@
 <template>
   <label :for="name" class="input">
     <span class="label-name">{{ name }}</span>
-    <input :type="type" :name="name" @blur="blurFn" @input="handleInput" />
-    <span class="error">{{ msg }} </span>
+    <input
+      :type="type"
+      :name="name"
+      v-model="content"
+      @input="handleInput"
+    />
+    <div v-if="error">
+      <div v-for="(item, index) in error.message" :key="index">
+        <span class="error" v-if="item.type === error.errorType">
+          {{ item.msg }}
+        </span>
+      </div>
+    </div>
   </label>
 </template>
 <script>
@@ -12,31 +23,46 @@ export default {
       type: String,
       default: "Name",
     },
-    type: {
-      type: String,
-      default: "text",
-    },
-    msg: {
-      type: String,
-      default: "The field is required!",
+    error: {
+      message: [],
+      errorType: null,
     },
     blur: {
       type: Function,
     },
-    input: null,
+    type: {
+      type: String,
+      default: "text",
+    },
+    model: null,
+    value: {
+      type: [String, Number],
+    },
   },
-
   data() {
     return {
       content: this.value,
+      validate: [],
     };
+  },
+  mounted() {
+    this.error.message.forEach((element) => {
+      if (!this.validate.includes(element.type)) {
+        this.validate = [...this.validate, element.type];
+      }
+    });
   },
   methods: {
     blurFn() {
-      this.$emit("blur", { type: this.type, value: this.value });
+      this.$emit("blur", {
+        value: this.content,
+        validate: this.validate,
+        model: this.model,
+      });
     },
     handleInput() {
-      this.$emit("input", this.content);
+      this.blurFn();
+      this.$emit("input", { content: this.content, model: this.model });
     },
   },
 };
@@ -64,6 +90,6 @@ input {
 .error {
   margin-top: 8px;
   color: #aa4651;
-  font-size: 12px;
+  font-size: 14px;
 }
 </style>

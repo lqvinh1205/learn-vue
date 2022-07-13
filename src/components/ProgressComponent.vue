@@ -19,13 +19,13 @@ export default {
     };
   },
   created() {
-    this.progress = (this.step / this.sum * 100) + "%";
+    this.progress = (this.step / this.sum) * 100 + "%";
   },
   watch: {
-	step(val) {
-    this.progress = (val / this.sum * 100) + "%";
-	}
-  }
+    step(val) {
+      this.progress = (val / this.sum) * 100 + "%";
+    },
+  },
 };
 </script>
 
@@ -39,7 +39,7 @@ export default {
 .progress {
   height: 20px;
   background: #437fe8;
-  transition: ease-in-out .5s;
+  transition: ease-in-out 0.5s;
   border-radius: 15px;
 }
 </style>
