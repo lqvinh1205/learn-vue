@@ -1,0 +1,51 @@
+<template>
+  <div class="post_page">
+    <div class="header_post_pages">
+      <TitleComponent name="Post" class="title" />
+        <router-link class="btn_add" to="/post/add">Add Post</router-link>
+    </div>
+    <TablePost />
+  </div>
+</template>
+<script>
+import TablePost from "@/components/admin/TablePosts.vue";
+import TitleComponent from "@/components/admin/TitleComponent.vue";
+export default {
+  components: {
+    TablePost,
+    TitleComponent,
+  },
+  data() {
+    return { post: [] };
+  },
+  created() {
+    this.$store.dispatch("getPosts");
+  },
+};
+</script>
+
+<style scoped>
+.title {
+  margin-bottom: 50px;
+}
+.header_post_pages {
+  display: flex;
+  justify-content: space-between;
+}
+.btn_add {
+  height: 40px;
+  width: 90px;
+  background: rgb(22, 107, 244);
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+.btn_add a {
+  color: #fff;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+}
+</style>
