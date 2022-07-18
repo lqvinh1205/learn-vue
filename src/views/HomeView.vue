@@ -4,8 +4,10 @@
       <MainNavbar />
     </div>
     <div class="main">
-      <div class="sidebar"></div>
-      <div class="content"></div>
+      <div class="sidebar">
+        <MainSidebar />
+      </div>
+      <div class="content">ASASD</div>
     </div>
   </div>
 </template>
@@ -13,11 +15,27 @@
 <script>
 // @ is an alias to /src
 import MainNavbar from "@/components/MainNavbar.vue";
+import MainSidebar from "@/components/MainSidebar.vue";
 
 export default {
   name: "HomeView",
   components: {
     MainNavbar,
+    MainSidebar,
   },
 };
 </script>
+<style scoped>
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.sidebar {
+  width: 260px;
+}
+.content {
+  width: calc(100% - 260px);
+  background: #f8f8f8;
+}
+</style>
