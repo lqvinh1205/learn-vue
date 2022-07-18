@@ -15,13 +15,13 @@
           <router-link :to="'/post/' + post.id + '/edit'"
             ><button class="btn_edit">Edit</button></router-link
           >
-          <button class="btn_remove" @click="toggleModal">Del</button>
+          <button class="btn_remove" @click="toggleModal(post.id)">Del</button>
         </td>
-        <ModalConfirm
-          :show="showModal"
-          @toggle="toggleModal"
-          @ok="removePost(post.id)"
-        />
+      <ModalConfirm
+        :show="showModal"
+        @toggle="toggleModal"
+        @ok="removePost(post.id)"
+      />
       </tr>
     </table>
     <div class="pagination">
@@ -37,15 +37,18 @@ export default {
   data() {
     return {
       showModal: false,
+      postId: null
     };
   },
   components: { PaginationComponent, ModalConfirm },
   methods: {
-    removePost(id) {
-      this.$store.dispatch("removePost", id);
-      this.showModal = false
+    removePost() {
+      console.log(this.postId);
+      this.$store.dispatch("removePost", this.postId);
+      this.showModal = false;
     },
-    toggleModal() {
+    toggleModal(id) {
+      this.postId = id
       this.showModal = !this.showModal;
     },
   },
