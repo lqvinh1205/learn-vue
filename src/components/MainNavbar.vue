@@ -12,18 +12,18 @@
         </li>
         <li>
           <router-link to="/">
-            <img :src="require('@/assets/home.svg')" alt="" /> <span>Post</span>
+            <img :src="require('@/assets/post.svg')" alt="" /> <span>Post</span>
           </router-link>
         </li>
         <li>
           <router-link to="/">
-            <img :src="require('@/assets/home.svg')" alt="" />
+            <img :src="require('@/assets/heart.svg')" alt="" />
             <span>Activity</span>
           </router-link>
         </li>
         <li>
           <router-link to="/">
-            <img :src="require('@/assets/home.svg')" alt="" />
+            <img :src="require('@/assets/bookmark-header.svg')" alt="" />
             <span>Bookmark</span>
           </router-link>
         </li>

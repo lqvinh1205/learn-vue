@@ -3,15 +3,16 @@
     <ul>
       <li>
         <router-link to="/">
-          <img :src="require('@/assets/new.svg')" alt="" />
+          <div><img :src="require('@/assets/new.svg')" alt="" /></div>
           <span>News</span>
         </router-link>
-
         <span class="notify_count">12</span>
       </li>
       <li>
-        <router-link to="/">
-          <img :src="require('@/assets/new.svg')" alt="" />
+        <router-link to="/technology">
+          <div>
+            <img :src="require('@/assets/new.svg')" alt="" />
+          </div>
           <span>Technology</span>
         </router-link>
 
@@ -19,7 +20,7 @@
       </li>
       <li>
         <router-link to="/">
-          <img :src="require('@/assets/new.svg')" alt="" />
+          <div><img :src="require('@/assets/music.svg')" alt="" /></div>
           <span>Music</span>
         </router-link>
 
@@ -27,7 +28,7 @@
       </li>
       <li>
         <router-link to="/">
-          <img :src="require('@/assets/new.svg')" alt="" />
+          <div><img :src="require('@/assets/feeback.svg')" alt="" /></div>
           <span>Feeback</span>
         </router-link>
 
@@ -37,7 +38,9 @@
     <ul>
       <li>
         <router-link to="/">
-          <img :src="require('@/assets/check.svg')" alt="" />
+          <div>
+            <img :src="require('@/assets/check.svg')" alt="" />
+          </div>
           <span>Survey</span>
         </router-link>
 
@@ -62,14 +65,12 @@ export default {};
   flex-direction: column;
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
-
 }
 .sidebar ul li {
   border-radius: 20px;
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   /* background: #007c7c; */
   height: 40px;
   padding: 8px 16px;
@@ -85,7 +86,7 @@ export default {};
   width: 100%;
   color: #000;
 }
-/* .sidebar ul li a.router-link-exact-active .sidebar ul li {
+/* .sidebar ul li a.router-link-exact-active {
   background: #007c7c;
 } */
 .sidebar ul li:hover {
@@ -94,12 +95,14 @@ export default {};
 .sidebar ul li:hover a {
   color: #fff;
 }
-.sidebar ul li a img {
-  fill: rgb(224, 224, 224);
-  object-fit: contain;
+.sidebar ul li a div {
+  /* object-fit: contain; */
+  /* padding-right: 10px;
+   */
+  width: 20px;
 }
 .sidebar ul:nth-child(2) li a img {
-	padding: 0 5px;
+  padding: 0 5px;
 }
 .notify_count {
   font-size: 14px;

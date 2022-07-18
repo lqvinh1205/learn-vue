@@ -7,7 +7,7 @@
       <div class="sidebar">
         <MainSidebar />
       </div>
-      <div class="content">ASASD</div>
+      <div class="content"><router-view></router-view></div>
     </div>
   </div>
 </template>
@@ -29,7 +29,6 @@ export default {
 .main {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
 }
 .sidebar {
   width: 260px;
